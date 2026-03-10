@@ -1,0 +1,63 @@
+{
+  "name": "AI Daily & Weekly Reports",
+  "description": "AI 行业数据源配置",
+  "last_updated": "2026-03-10",
+  
+  "daily_sources": {
+    "hacker_news": {
+      "name": "Hacker News AI/ML",
+      "url": "https://hnrss.org/newest?q=AI",
+      "type": "rss",
+      "enabled": true,
+      "priority": 1
+    },
+    "arxiv": {
+      "name": "arXiv CS.AI",
+      "url": "http://export.arxiv.org/rss/cs.AI",
+      "type": "rss",
+      "enabled": true,
+      "priority": 2
+    },
+    "tech_media": [
+      {
+        "name": "机器之心",
+        "url": "https://www.jiqizhixin.com/",
+        "type": "web"
+      },
+      {
+        "name": "36Kr AI",
+        "url": "https://36kr.com/t/ai",
+        "type": "web"
+      }
+    ]
+  },
+  
+  "weekly_sources": {
+    "papers_with_code": {
+      "name": "Papers With Code",
+      "url": "https://paperswithcode.com/",
+      "type": "web",
+      "priority": 1
+    },
+    "twitter_trending": {
+      "name": "Twitter AI Trending",
+      "url": "https://twitter.com/search?q=AI%20OR%20LLM&f=live",
+      "type": "social",
+      "priority": 2
+    }
+  },
+  
+  "output": {
+    "daily_path": "daily-reports",
+    "weekly_path": "weekly-reports",
+    "format": "markdown",
+    "auto_push": true
+  },
+  
+  "schedule": {
+    "daily_time": "10:00",
+    "weekly_day": "Friday",
+    "weekly_time": "17:00",
+    "timezone": "Asia/Shanghai"
+  }
+}
