@@ -3,136 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Daily & Weekly Reports</title>
+    <title>AI Daily & Weekly Reports | AI 行业洞察</title>
     <style>
+        /* ============ CSS 变量 ============ */
         :root {
             --color-success: #059669;
+            --color-success-light: #10B981;
             --color-info: #2563EB;
+            --color-purple: #7C3AED;
             --color-bg: #F8FAFB;
             --color-text: #1C1917;
+            --color-text-secondary: #57534E;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08);
+            --gradient-hero: linear-gradient(135deg, #059669 0%, #2563EB 50%, #7C3AED 100%);
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: -apple-system, system-ui, sans-serif;
+            font-family: -apple-system, "SF Pro Display", system-ui, "Noto Sans SC", sans-serif;
             background: var(--color-bg);
             color: var(--color-text);
             line-height: 1.6;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .header {
+        
+        /* ============ Hero Header ============ */
+        .hero {
+            background: var(--color-bg);
+            padding: 60px 20px 40px;
             text-align: center;
-            padding: 40px 20px;
-            background: white;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-hero);
+            border-image-slice: 1;
         }
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #059669, #2563EB);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .badge {
-            display: inline-block;
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 6px 16px;
             background: linear-gradient(135deg, #ECFDF5, #EFF6FF);
             color: var(--color-info);
             border-radius: 20px;
             font-size: 13px;
             font-weight: 500;
+            margin-bottom: 16px;
+            border: 1px solid rgba(37, 99, 235, 0.12);
         }
+        
+        .hero h1 {
+            font-size: 36px;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        .hero p {
+            color: var(--color-text-secondary);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ============ Stats Bar ============ */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 1000px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        /* ============ Container ============ */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+        
+        /* ============ Section ============ */
         .section {
             background: white;
-            padding: 30px;
             border-radius: 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.04);
         }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(5, 150, 105, 0.1);
+        }
+        
+        .section-icon {
+            font-size: 24px;
+        }
+        
         .section h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+        
+        /* ============ Report Cards ============ */
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        
+        .report-card {
+            background: linear-gradient(135deg, rgba(5,150,105,0.03) 0%, rgba(37,99,235,0.03) 100%);
+            border: 1px solid rgba(5, 150, 105, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-success);
+        }
+        
+        .report-date {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(5, 150, 105, 0.1);
             color: var(--color-success);
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
         }
-        .report-list {
-            list-style: none;
+        
+        .report-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
-        .report-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #E7E5E4;
+        
+        .report-preview {
+            color: var(--color-text-secondary);
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
-        .report-list li:last-child {
-            border-bottom: none;
-        }
-        .report-list a {
+        
+        .report-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             color: var(--color-info);
             text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
+            transition: color 0.2s;
         }
-        .report-list a:hover {
+        
+        .report-link:hover {
             color: var(--color-success);
         }
-        .report-date {
-            color: #78716C;
-            font-size: 13px;
-            margin-left: 10px;
+        
+        /* ============ Tags ============ */
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
         }
+        
+        .tag {
+            padding: 4px 10px;
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--color-purple);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* ============ Footer ============ */
         .footer {
             text-align: center;
-            padding: 30px;
-            color: #78716C;
-            font-size: 13px;
+            padding: 40px 20px;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        
+        .footer a {
+            color: var(--color-info);
+            text-decoration: none;
+        }
+        
+        /* ============ Responsive ============ */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .stats-bar { grid-template-columns: 1fr; }
+            .report-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <span class="badge">🤖 AI 行业洞察</span>
-            <h1>AI Daily & Weekly Reports</h1>
-            <p>AI 技术日报 + 行业周报，自动追踪最新进展</p>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-badge">
+            <span>🤖</span>
+            <span>AI 行业洞察平台</span>
         </div>
+        <h1>AI Daily & Weekly Reports</h1>
+        <p>每日追踪 AI 技术进展，每周洞察行业发展趋势</p>
+    </div>
 
-        <div class="section">
-            <h2>📰 最新日报</h2>
-            <ul class="report-list" id="daily-list">
-                <li><a href="daily-reports/2026-03/2026-03-10.md">AI 技术日报 - 2026-03-10</a><span class="report-date">今天</span></li>
-            </ul>
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-number">1</div>
+            <div class="stat-label">今日日报</div>
         </div>
-
-        <div class="section">
-            <h2>📊 最新周报</h2>
-            <ul class="report-list" id="weekly-list">
-                <li>敬请期待...</li>
-            </ul>
+        <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">数据源</div>
         </div>
-
-        <div class="section">
-            <h2>📁 归档</h2>
-            <ul class="report-list">
-                <li><a href="daily-reports/2026-03/">2026 年 3 月日报</a></li>
-                <li><a href="weekly-reports/">2026 年周报</a></li>
-            </ul>
+        <div class="stat-card">
+            <div class="stat-number">10:00</div>
+            <div class="stat-label">每日更新</div>
         </div>
-
-        <div class="footer">
-            <p>Generated by OpenClaw AI Assistant</p>
-            <p>参考项目：<a href="https://github.com/xiaoxiong20260206/ai-insight" target="_blank">AI-Insight</a></p>
+        <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">自动化</div>
         </div>
     </div>
 
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Daily Reports Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📰</span>
+                <h2>最新日报</h2>
+            </div>
+            <div class="report-grid">
+                <div class="report-card">
+                    <span class="report-date">📅 2026-03-10</span>
+                    <h3 class="report-title">AI 技术日报 - Hacker News 热点、arXiv 论文、工具推荐</h3>
+                    <p class="report-preview">
+                        今日热点：AI 行业持续发展，多个新工具发布。大模型技术不断演进，社区讨论热烈...
+                    </p>
+                    <a href="daily-reports/2026-03/2026-03-10.md" class="report-link">
+                        阅读全文 →
+                    </a>
+                    <div class="tags">
+                        <span class="tag">#HackerNews</span>
+                        <span class="tag">#arXiv</span>
+                        <span class="tag">#AI 工具</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Reports Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h2>最新周报</h2>
+            </div>
+            <div style="text-align: center; padding: 40px; color: var(--color-text-secondary);">
+                <p style="font-size: 16px; margin-bottom: 8px;">🚧 首期周报即将发布</p>
+                <p style="font-size: 14px;">本周五 17:00 自动生成，敬请期待！</p>
+            </div>
+        </div>
+
+        <!-- Archive Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📁</span>
+                <h2>归档</h2>
+            </div>
+            <div style="display: grid; gap: 12px;">
+                <a href="daily-reports/2026-03/" class="report-card" style="text-decoration: none; display: block;">
+                    <h3 class="report-title">📂 2026 年 3 月日报</h3>
+                    <p class="report-preview">查看本月所有日报</p>
+                </a>
+                <a href="weekly-reports/" class="report-card" style="text-decoration: none; display: block;">
+                    <h3 class="report-title">📂 2026 年周报</h3>
+                    <p class="report-preview">查看全年周报汇总</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">ℹ️</span>
+                <h2>关于本项目</h2>
+            </div>
+            <div style="color: var(--color-text-secondary); line-height: 1.8;">
+                <p style="margin-bottom: 16px;">
+                    本项目参考了 <a href="https://xiaoxiong20260206.github.io/ai-insight/" target="_blank" style="color: var(--color-info);">AI-Insight</a> 的设计思路，
+                    致力于提供高质量的 AI 行业日报和周报。
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 24px;">
+                    <div style="padding: 16px; background: rgba(5,150,105,0.05); border-radius: 8px;">
+                        <h4 style="color: var(--color-success); margin-bottom: 8px;">📰 每日热点</h4>
+                        <p style="font-size: 13px;">Hacker News、arXiv、科技媒体，一站式获取</p>
+                    </div>
+                    <div style="padding: 16px; background: rgba(37,99,235,0.05); border-radius: 8px;">
+                        <h4 style="color: var(--color-info); margin-bottom: 8px;">📊 深度分析</h4>
+                        <p style="font-size: 13px;">每周深度分析技术突破、公司动态、投资趋势</p>
+                    </div>
+                    <div style="padding: 16px; background: rgba(124,58,237,0.05); border-radius: 8px;">
+                        <h4 style="color: var(--color-purple); margin-bottom: 8px;">🤖 自动生成</h4>
+                        <p style="font-size: 13px;">基于 OpenClaw 框架，全自动生成和推送</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Generated by <strong>OpenClaw AI Assistant</strong> 🦞</p>
+        <p style="margin-top: 8px;">
+            参考项目：<a href="https://github.com/xiaoxiong20260206/ai-insight" target="_blank">AI-Insight</a> | 
+            <a href="https://github.com/jyx13121802323/ai-daily-weekly" target="_blank">GitHub</a>
+        </p>
+    </footer>
+
     <script>
-        // 自动加载最新报告
+        // 动态更新统计数据
         fetch('daily-reports/2026-03/2026-03-10.md')
             .then(r => r.text())
             .then(content => {
-                console.log('Latest report loaded');
-            });
+                const sections = (content.match(/^## /gm) || []).length;
+                document.querySelector('.stat-number').textContent = sections + '+';
+            })
+            .catch(() => {});
     </script>
 </body>
 </html>
