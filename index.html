@@ -958,7 +958,7 @@
         });
         
         // 动态更新统计数据
-        fetch('daily-reports/2026-03/2026-03-11-ai-news.md')
+        fetch('daily-reports/2026-03/2026-03-11-ai-news.html')
             .then(r => r.text())
             .then(content => {
                 const sections = (content.match(/^## /gm) || []).length;
