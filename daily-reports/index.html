@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报告归档 | AI Daily Weekly</title>
+    <style>
+        :root {
+            --color-success: #059669;
+            --color-success-light: #10B981;
+            --color-info: #2563EB;
+            --color-purple: #7C3AED;
+            --color-warning: #D97706;
+            --color-bg: #F8FAFB;
+            --color-text: #1C1917;
+            --color-text-secondary: #57534E;
+            --gradient-hero: linear-gradient(135deg, #059669 0%, #2563EB 50%, #7C3AED 100%);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, "SF Pro Display", system-ui, "Noto Sans SC", sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-hero);
+            border-image-slice: 1;
+            margin-bottom: 30px;
+        }
+        
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, #ECFDF5, #EFF6FF);
+            color: var(--color-info);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .header-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 15px;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Section */
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(5, 150, 105, 0.1);
+        }
+        
+        .section-icon {
+            font-size: 28px;
+        }
+        
+        .section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+        
+        /* Archive List */
+        .archive-list {
+            list-style: none;
+        }
+        
+        .archive-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--color-bg);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        
+        .archive-item:hover {
+            background: rgba(5, 150, 105, 0.05);
+            border-color: var(--color-success);
+            transform: translateX(4px);
+        }
+        
+        .archive-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .archive-date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--color-text);
+            min-width: 120px;
+        }
+        
+        .archive-date-icon {
+            font-size: 18px;
+        }
+        
+        .archive-title {
+            flex: 1;
+            color: var(--color-text-secondary);
+            margin: 0 16px;
+            font-size: 14px;
+        }
+        
+        .archive-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-info);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .archive-link:hover {
+            color: var(--color-success);
+            background: var(--color-success);
+            color: white;
+        }
+        
+        /* Month Section */
+        .month-section {
+            margin-bottom: 32px;
+        }
+        
+        .month-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(37, 99, 235, 0.1);
+        }
+        
+        .month-badge {
+            padding: 6px 14px;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(37, 99, 235, 0.1));
+            color: var(--color-info);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .month-count {
+            color: var(--color-text-secondary);
+            font-size: 13px;
+        }
+        
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid var(--color-success);
+            color: var(--color-success);
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 24px;
+            transition: all 0.2s;
+        }
+        
+        .back-btn:hover {
+            background: var(--color-success);
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: var(--color-info);
+            text-decoration: none;
+        }
+        
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--color-purple);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+        
+        .tag.new {
+            background: rgba(5, 150, 105, 0.08);
+            color: var(--color-success);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 24px; }
+            .section { padding: 20px; }
+            .archive-item { flex-direction: column; gap: 12px; text-align: center; }
+            .archive-item:hover { transform: translateY(-2px); }
+            .archive-date { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-badge">
+            <span>📁</span>
+            <span>报告归档</span>
+        </div>
+        <h1>Archive</h1>
+        <p class="header-subtitle">查看所有历史日报和周报</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../" class="back-btn">
+            ← 返回首页
+        </a>
+
+        <!-- March 2026 -->
+        <div class="month-section">
+            <div class="month-header">
+                <span class="month-badge">📅 2026 年 03 月</span>
+                <span class="month-count">3 份报告</span>
+            </div>
+            <ul class="archive-list">
+                <li class="archive-item">
+                    <div class="archive-date">
+                        <span class="archive-date-icon">📆</span>
+                        <span>03-12</span>
+                    </div>
+                    <span class="archive-title">AI 技术日报 - Zig Agent 复古运行、AI 安全双重奏、Git 协作新范式</span>
+                    <a href="2026-03/2026-03-12-ai-news.html" class="archive-link">
+                        阅读 <span>→</span>
+                    </a>
+                </li>
+                <li class="archive-item">
+                    <div class="archive-date">
+                        <span class="archive-date-icon">📆</span>
+                        <span>03-11</span>
+                    </div>
+                    <span class="archive-title">AI 技术日报 - 沙特 AI 年、AEO 新趋势、State of AI 2026</span>
+                    <a href="2026-03/2026-03-11-ai-news.html" class="archive-link">
+                        阅读 <span>→</span>
+                    </a>
+                </li>
+                <li class="archive-item">
+                    <div class="archive-date">
+                        <span class="archive-date-icon">📆</span>
+                        <span>03-10</span>
+                    </div>
+                    <span class="archive-title">AI 技术日报 - LeCun $1B 融资、Meta 收购 Moltbook</span>
+                    <a href="2026-03/2026-03-10-ai-news.html" class="archive-link">
+                        阅读 <span>→</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Generated by <strong>OpenClaw AI Assistant</strong> 🦞</p>
+        <p style="margin-top: 8px;">
+            <a href="../">← 返回首页</a> | 
+            <a href="https://github.com/jyx13121802323/ai-daily-weekly" target="_blank">GitHub</a>
+        </p>
+    </footer>
+</body>
+</html>
