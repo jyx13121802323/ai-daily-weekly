@@ -755,7 +755,7 @@
             <div class="section-header">
                 <div class="section-title">
                     <span class="section-icon">📰</span>
-                    <h2>今日报告 · 2026 年 03 月 12 日</h2>
+                    <h2>今日报告 · 2026 年 03 月 13 日</h2>
                 </div>
                 <a href="#" class="section-more">
                     查看全部 →
@@ -765,26 +765,25 @@
                 <!-- AI 技术日报 -->
                 <article class="report-card featured">
                     <div class="report-meta">
-                        <span class="report-date">📅 03-12</span>
+                        <span class="report-date">📅 03-13</span>
                         <span class="report-type">AI 技术</span>
                     </div>
-                    <h3 class="report-title">AI 技术日报 - Zig Agent 复古运行、AI 安全双重奏、Git 协作新范式</h3>
+                    <h3 class="report-title">AI 技术日报 - Sloppypaste 现象、AI Agent 授权、Copilot Health</h3>
                     <p class="report-preview">
-                        开发者用 Zig 构建 AI Agent 在 Windows XP 上运行（64MB RAM）；AI 欺诈检测 vs 幻觉防火墙；Agent 通过 Git 协作...
+                        直接粘贴 AI 输出而不阅读的现象引发讨论；基于能力的 Agent 授权；实时 AI 排行榜元排名；P2P 网格网络协议...
                     </p>
                     <div class="report-stats">
-                        <span class="report-stat">📝 4 个热点</span>
-                        <span class="report-stat">💡 3 篇深度</span>
-                        <span class="report-stat">⏱️ 6 分钟阅读</span>
+                        <span class="report-stat">📝 8 个热点</span>
+                        <span class="report-stat">💡 5 条资讯</span>
+                        <span class="report-stat">⏱️ 5 分钟阅读</span>
                     </div>
-                    <a href="daily-reports/2026-03/2026-03-12-ai-news.html" class="report-link">
+                    <a href="daily-reports/2026-03/2026-03-13-ai-news.html" class="report-link">
                         阅读全文 <span>→</span>
                     </a>
                     <div class="report-tags">
                         <span class="tag hot">#AI Agent</span>
-                        <span class="tag">#Security</span>
-                        <span class="tag">#Deepfake</span>
-                        <span class="tag new">#Git</span>
+                        <span class="tag">#HackerNews</span>
+                        <span class="tag new">#Copilot</span>
                     </div>
                 </article>
             </div>
@@ -802,6 +801,26 @@
                 </a>
             </div>
             <div class="report-grid">
+                <!-- 03-13 -->
+                <article class="report-card">
+                    <div class="report-meta">
+                        <span class="report-date">📅 03-13</span>
+                        <span class="report-type">AI 技术</span>
+                    </div>
+                    <h3 class="report-title">AI 技术日报 - Sloppypaste 现象、AI Agent 授权、Copilot Health</h3>
+                    <p class="report-preview">
+                        直接粘贴 AI 输出而不阅读的现象引发讨论；基于能力的 Agent 授权；实时 AI 排行榜元排名；P2P 网格网络协议...
+                    </p>
+                    <a href="daily-reports/2026-03/2026-03-13-ai-news.html" class="report-link">
+                        阅读全文 <span>→</span>
+                    </a>
+                    <div class="report-tags">
+                        <span class="tag hot">#AI Agent</span>
+                        <span class="tag">#HackerNews</span>
+                        <span class="tag new">#Copilot</span>
+                    </div>
+                </article>
+
                 <!-- 03-12 -->
                 <article class="report-card">
                     <div class="report-meta">
@@ -1000,7 +1019,7 @@
         });
         
         // 动态更新统计数据
-        fetch('daily-reports/2026-03/2026-03-12-ai-news.html')
+        fetch('daily-reports/2026-03/2026-03-13-ai-news.html')
             .then(r => r.text())
             .then(content => {
                 const sections = (content.match(/^## /gm) || []).length;
