@@ -1,44 +1,10 @@
-#!/bin/bash
-# AI Daily Report HTML Generator
-# 生成与 03-15 格式一致的 HTML 日报
-
-set -e
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WORKSPACE="$(dirname "$SCRIPT_DIR")"
-DATE=$(date +%Y-%m-%d)
-MONTH=$(date +%Y-%m)
-MD_FILE="$WORKSPACE/daily-reports/$MONTH/$DATE.md"
-HTML_FILE="$WORKSPACE/daily-reports/$MONTH/$DATE-ai-news.html"
-
-# 读取 MD 文件内容
-if [ ! -f "$MD_FILE" ]; then
-    echo "⚠️ MD file not found: $MD_FILE"
-    exit 1
-fi
-
-# 提取 Hacker News 标题（从 memory/ai-news-today.md）
-MEMORY_FILE="$WORKSPACE/memory/ai-news-today.md"
-if [ -f "$MEMORY_FILE" ]; then
-    HN_TITLES=$(grep -A20 "🔥 Hacker News" "$MEMORY_FILE" | grep "• " | head -8 | sed 's/• //' || true)
-    MIT_TITLES=$(grep -A10 "📰 MIT Tech Review" "$MEMORY_FILE" | grep "• " | head -5 | sed 's/• //' || true)
-fi
-
-# 格式化日期显示
-DATE_DISPLAY=$(echo "$DATE" | sed 's/-/年 /;s/-/月 /')日
-
-echo "🎨 生成 HTML 日报..."
-echo "   日期：$DATE"
-
-# 创建 HTML（使用与 03-15 一致的模板）
-cat > "$HTML_FILE" << HTMLEOF
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 技术日报 - ${DATE_DISPLAY} | AI 行业洞察</title>
-    <meta name="description" content="${DATE} AI 技术日报 - Hacker News 热点、MIT Tech Review、行业趋势">
+    <title>AI 技术日报 - 2026年 03月 16日 | AI 行业洞察</title>
+    <meta name="description" content="2026-03-16 AI 技术日报 - Hacker News 热点、MIT Tech Review、行业趋势">
     <style>
         :root {
             --primary: #059669;
@@ -303,7 +269,7 @@ cat > "$HTML_FILE" << HTMLEOF
             <span>AI 技术日报</span>
         </div>
         <h1>AI Daily Report</h1>
-        <p class="header-date">${DATE_DISPLAY}</p>
+        <p class="header-date">2026年 03月 16日</p>
     </header>
 
     <!-- Main Content -->
@@ -325,44 +291,6 @@ cat > "$HTML_FILE" << HTMLEOF
                     </tr>
                 </thead>
                 <tbody>
-HTMLEOF
-
-# 添加 Hacker News 热点
-if [ -n "$HN_TITLES" ]; then
-    echo "$HN_TITLES" | head -8 | while IFS= read -r title; do
-        if [ -n "$title" ]; then
-            cat >> "$HTML_FILE" << ROWEOF
-                    <tr>
-                        <td class="news-title">
-                            <a href="https://news.ycombinator.com/" target="_blank">$title</a>
-                        </td>
-                        <td><span class="news-source">Hacker News</span></td>
-                        <td class="news-heat">🔥🔥🔥</td>
-                    </tr>
-ROWEOF
-        fi
-    done
-fi
-
-# 添加 MIT Tech Review 热点
-if [ -n "$MIT_TITLES" ]; then
-    echo "$MIT_TITLES" | head -5 | while IFS= read -r title; do
-        if [ -n "$title" ]; then
-            cat >> "$HTML_FILE" << ROWEOF
-                    <tr>
-                        <td class="news-title">
-                            <a href="https://www.technologyreview.com/" target="_blank">$title</a>
-                        </td>
-                        <td><span class="news-source">MIT Tech Review</span></td>
-                        <td class="news-heat">🔥🔥</td>
-                    </tr>
-ROWEOF
-        fi
-    done
-fi
-
-# 关闭 HTML
-cat >> "$HTML_FILE" << 'HTMLEOF'
                 </tbody>
             </table>
         </section>
@@ -391,7 +319,3 @@ cat >> "$HTML_FILE" << 'HTMLEOF'
     </footer>
 </body>
 </html>
-HTMLEOF
-
-echo "✅ HTML 日报生成成功！"
-echo "   文件：$HTML_FILE"
