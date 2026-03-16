@@ -53,6 +53,11 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
         body {
             font-family: -apple-system, "SF Pro Display", "PingFang SC", "Noto Sans SC", sans-serif;
             background: var(--color-bg);
@@ -161,12 +166,14 @@
             border-radius: var(--radius-lg);
             padding: 20px;
             transition: all 0.2s;
+            cursor: pointer;
         }
         
         .overview-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
             border-color: var(--color-success);
+            background: var(--gradient-card);
         }
         
         .overview-icon {
@@ -547,36 +554,36 @@
             <a href="../" class="back-link">← 返回首页</a>
             
             <!-- Overview Cards -->
-            <div class="overview-grid">
-                <div class="overview-card">
+            <div class="overview-grid" id="overview">
+                <a href="#foundation-models" class="overview-card" style="text-decoration: none;">
                     <div class="overview-icon">🧠</div>
                     <div class="overview-title">大模型</div>
                     <div class="overview-summary">AI 安全与开源标准成为焦点，Cybeetle 等工具涌现</div>
-                </div>
-                <div class="overview-card">
+                </a>
+                <a href="#ai-coding" class="overview-card" style="text-decoration: none;">
                     <div class="overview-icon">💻</div>
                     <div class="overview-title">AI Coding</div>
                     <div class="overview-summary">Pydantic AI 移植 TypeScript，VibeSDK 5 小时完成</div>
-                </div>
-                <div class="overview-card">
+                </a>
+                <a href="#ai-apps" class="overview-card" style="text-decoration: none;">
                     <div class="overview-icon">📱</div>
                     <div class="overview-title">AI 应用</div>
                     <div class="overview-summary">开源 Agentic AI 物理学家发布</div>
-                </div>
-                <div class="overview-card">
+                </a>
+                <a href="#ai-industry" class="overview-card" style="text-decoration: none;">
                     <div class="overview-icon">🏭</div>
                     <div class="overview-title">AI 行业</div>
                     <div class="overview-summary">AI 参与度披露标准 AIx 发布</div>
-                </div>
-                <div class="overview-card">
+                </a>
+                <a href="#ai-research" class="overview-card" style="text-decoration: none;">
                     <div class="overview-icon">🔬</div>
                     <div class="overview-title">AI 研究</div>
                     <div class="overview-summary">大学课程设计问题暴露</div>
-                </div>
+                </a>
             </div>
             
             <!-- Section 1: 大模型 -->
-            <section class="section">
+            <section class="section" id="foundation-models">
                 <div class="section-header">
                     <span class="section-icon">🧠</span>
                     <h2>一、大模型 (Foundation Models)</h2>
@@ -624,7 +631,7 @@
             </section>
             
             <!-- Section 2: AI Coding -->
-            <section class="section">
+            <section class="section" id="ai-coding">
                 <div class="section-header">
                     <span class="section-icon">💻</span>
                     <h2>二、AI Coding</h2>
@@ -650,8 +657,125 @@
                 </div>
             </section>
             
+            <!-- Section 3: AI Applications -->
+            <section class="section" id="ai-apps">
+                <div class="section-header">
+                    <span class="section-icon">📱</span>
+                    <h2>三、AI 应用 (Applications)</h2>
+                </div>
+                
+                <div class="news-item normal">
+                    <div class="news-header">
+                        <span class="news-title">The First Open-Source Agentic AI Physicist</span>
+                        <span class="news-source">Hacker News</span>
+                    </div>
+                    <div class="news-content">
+                        开源 AI 物理学家发布，AI 在科学研究中的应用
+                    </div>
+                    <div class="news-why-important">
+                        <strong>影响判断：</strong>AI for Science 进入新阶段，从辅助工具到独立研究者
+                    </div>
+                </div>
+                
+                <div class="news-item normal">
+                    <div class="news-header">
+                        <span class="news-title">Early adopters cash in on China's OpenClaw craze</span>
+                        <span class="news-source">MIT Tech Review</span>
+                    </div>
+                    <div class="news-content">
+                        OpenClaw 在中国的早期采用者获利
+                    </div>
+                    <div class="news-why-important">
+                        <strong>影响判断：</strong>AI 助手工具商业化加速
+                    </div>
+                </div>
+                
+                <div class="insight-box">
+                    <h3>📈 趋势洞察</h3>
+                    <p><strong>AI for Science 突破：</strong>AI 物理学家发布标志 AI 从"工具"向"研究者"角色转变。未来可能出现更多 AI 科学家。</p>
+                </div>
+            </section>
+            
+            <!-- Section 4: AI Industry -->
+            <section class="section" id="ai-industry">
+                <div class="section-header">
+                    <span class="section-icon">🏭</span>
+                    <h2>四、AI 行业 (Industry)</h2>
+                </div>
+                
+                <div class="news-item normal">
+                    <div class="news-header">
+                        <span class="news-title">AI has exposed age-old problems with university coursework</span>
+                        <span class="news-source">Hacker News</span>
+                    </div>
+                    <div class="news-content">
+                        AI 暴露大学课程设计的老旧问题
+                    </div>
+                    <div class="news-why-important">
+                        <strong>影响判断：</strong>教育体系需要重新设计评估方式，从"记忆知识"转向"应用能力"
+                    </div>
+                </div>
+                
+                <div class="news-item normal">
+                    <div class="news-header">
+                        <span class="news-title">The state of Computer Vision and AI: we are far away</span>
+                        <span class="news-source">Hacker News</span>
+                    </div>
+                    <div class="news-content">
+                        计算机视觉和 AI 现状反思
+                    </div>
+                    <div class="news-why-important">
+                        <strong>影响判断：</strong>行业需要理性看待技术局限性
+                    </div>
+                </div>
+                
+                <div class="insight-box">
+                    <h3>📈 趋势洞察</h3>
+                    <p><strong>教育体系变革压力增大：</strong>AI 让传统课程设计的问题暴露无遗。未来教育需要从"知识传授"转向"能力培养"，评估方式需要从"考试"转向"项目实践"。</p>
+                </div>
+            </section>
+            
+            <!-- Section 5: AI Research -->
+            <section class="section" id="ai-research">
+                <div class="section-header">
+                    <span class="section-icon">🔬</span>
+                    <h2>五、AI 研究 (Research)</h2>
+                </div>
+                
+                <div class="news-item normal">
+                    <div class="news-header">
+                        <span class="news-title">Why physical AI is becoming manufacturing's next advantage</span>
+                        <span class="news-source">MIT Tech Review</span>
+                    </div>
+                    <div class="news-content">
+                        物理 AI 在制造业的应用前景分析
+                    </div>
+                    <div class="news-why-important">
+                        <strong>方向：</strong>物理 AI / 制造业
+                    </div>
+                </div>
+                
+                <div class="news-item normal">
+                    <div class="news-header">
+                        <span class="news-title">Future AI chips could be built on glass</span>
+                        <span class="news-source">MIT Tech Review</span>
+                    </div>
+                    <div class="news-content">
+                        玻璃基 AI 芯片技术展望
+                    </div>
+                    <div class="news-why-important">
+                        <strong>方向：</strong>AI 芯片 / 材料科学
+                    </div>
+                </div>
+                
+                <div class="insight-box">
+                    <h3>📈 趋势洞察</h3>
+                    <p><strong>AI 硬件创新加速：</strong>从传统硅基到玻璃基，AI 芯片材料创新可能带来性能突破。</p>
+                </div>
+            </section>
+            
             <!-- Deep Focus Section -->
-            <section class="section deep-focus">
+            <section class="section deep-focus" id="deep-focus">
                 <div class="deep-focus-header">
                     <span class="section-icon">🎯</span>
                     <h2>今日深度聚焦</h2>
